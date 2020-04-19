@@ -6,10 +6,10 @@ require("dotenv").config()
 bakery.commands = new Discord.Collection()
 bakery.aliases = new Discord.Collection()
 
-fs.readdirSync(__dirname + "/../commands/").forEach((folder) => {
-    fs.readdirSync(__dirname + `/../commands/${folder}`).filter(file => file.endsWith('.js')).forEach((f) => {
+fs.readdirSync(__dirname + "/commands/").forEach((folder) => {
+    fs.readdirSync(__dirname + `/commands/${folder}`).filter(file => file.endsWith('.js')).forEach((f) => {
         try {
-            let props = require(`../commands/${folder}/${f}`)
+            let props = require(`./commands/${folder}/${f}`)
             bakery.commands.set(props.help.name, props)
             if(props.help.aliases) props.help.aliases.forEach(alias => {
             bakery.aliases.set(alias, props.help.name)
@@ -33,7 +33,7 @@ try {
         const _event = files[i].slice(0, -3)
         try {
             const event = require(`./events/${files[i]}`)
-            client.on(files[i].slice(0, -3), event.bind(null, client))
+            bakery.on(files[i].slice(0, -3), event.bind(null, bakery))
             console.log(`Successfully loaded event ${_event}.`)
             loadednum++
         } catch(err) {
