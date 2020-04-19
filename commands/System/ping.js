@@ -3,7 +3,7 @@ exports.run = async (bakery, msg) => {
 	m.edit("Pong!", {embed: {
 		color: 0xFB83C4,
 		description: `🏓 Pong! \`${m.createdTimestamp - msg.createdTimestamp}\`ms
-		💓 Websocket: ${bakery.ws.ping}`
+		💓 Websocket: \`${bakery.ws.ping}\`ms`
 	}})
 }
 
