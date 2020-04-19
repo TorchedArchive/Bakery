@@ -1,7 +1,7 @@
 module.exports = (bakery, msg) => {
     if (msg.channel.type === 'dm') return;
     if (msg.author.bot) return;
-    const prefixes = [`<@!${bakery.user.id}>`, `<@${bakery.user.id}>`, "bakery ", "b "]
+    const prefixes = [`<@!${bakery.user.id}> `, `<@${bakery.user.id}> `, "bakery ", "b "]
     let prefix = false
     let mssg = msg.content.toLowerCase() || msg.content.toUpperCase()
     for(let pref of prefixes) {
