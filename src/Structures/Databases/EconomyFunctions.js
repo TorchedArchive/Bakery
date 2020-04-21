@@ -7,7 +7,7 @@ class EconomyFunctions {
 	static init(userID) {
 		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
 		if(!row) { 
-			return db.prepare("INSERT INTO users (id, money, badges, daily) VALUES (?, ?, ?);").run(userID, 0, "[]", 0)
+			return db.prepare("INSERT INTO users (id, money, badges, daily) VALUES (?, ?, ?, ?);").run(userID, 0, "[]", 0)
 		} else {
 			return;
 		}
