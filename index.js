@@ -12,7 +12,7 @@ bakery.aliases = new Discord.Collection()
 const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'users';").get()
 
 if (!table["count(*)"]) {
-    db.prepare("CREATE TABLE users (id INTEGER PRIMARY KEY, money INTEGER, badges TEXT);").run();
+    db.prepare("CREATE TABLE users (id INTEGER PRIMARY KEY, money INTEGER, badges TEXT, daily INTEGER);").run();
     db.prepare("CREATE UNIQUE INDEX idx_user_id ON users (id);").run()
     db.pragma("synchronous = 1")
     db.pragma("journal_mode = wal")
