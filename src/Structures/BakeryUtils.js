@@ -11,7 +11,7 @@ class BakeryUtils {
 		if (mins.toString().length === 1) mins = `0${mins}`;
 		if (secs.toString().length === 1) secs = `0${secs}`;
 
-		return `${hours}:${mins}:${secs}`
+		return `${hours}:${mins}:${secs}`;
 	}
 }
 
