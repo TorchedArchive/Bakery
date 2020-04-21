@@ -11,6 +11,6 @@ exports.help = {
 	aliases: [],
 	name: "ping",
 	description: "Check bot latency.",
-	usage: "",
+	usage: "ping",
 	example: "ping"
 }

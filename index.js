@@ -1,11 +1,23 @@
 const Discord = require("discord.js")
 const Bakery = require("./src/Structures.js")
-const bakery = new Bakery.Client()
+const Database = require('better-sqlite3');
 const fs = require("fs")
+const bakery = new Bakery.Client()
+const db = new Database('./src/Bakery.db');
 require("dotenv").config()
 
 bakery.commands = new Discord.Collection()
 bakery.aliases = new Discord.Collection()
+
+const table = db.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'users';").get()
+
+if (!table["count(*)"]) {
+    db.prepare("CREATE TABLE users (id INTEGER PRIMARY KEY, money INTEGER, badges TEXT);").run();
+    db.prepare("CREATE UNIQUE INDEX idx_user_id ON users (id);").run()
+    db.pragma("synchronous = 1")
+    db.pragma("journal_mode = wal")
+    console.log("Created economy table for SQLite database.")
+}
 
 fs.readdirSync(__dirname + "/commands/").forEach((folder) => {
     let c = 0;

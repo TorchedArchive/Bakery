@@ -6,6 +6,7 @@ class BakeryClient extends Discord.Client {
 
 		this.log = new (require("./BakeryLogger.js"))()
 		this.config = require("../../config.json")
+		this.economy = require("./Databases/EconomyFunctions.js")
 	}
 }
 
