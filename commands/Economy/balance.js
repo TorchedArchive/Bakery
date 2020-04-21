@@ -7,7 +7,7 @@ exports.run = async (bakery, msg) => {
 	} else {
 		msg.channel.send({embed: {
 			color: 0xFB83C4,
-			description: "This command is still in testing."
+			description: bakery.economy.get(msg.author.id)
 		}})
 	}
 }
