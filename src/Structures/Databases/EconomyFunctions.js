@@ -24,11 +24,19 @@ class EconomyFunctions {
 
 	static get(userID) {
 		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
-		if(!row) {
-			return false;
-		} else {
-			return row.money
-		}
+		return row.money;
+	}
+
+	static give(userID, amount) {
+		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
+		db.prepare("REPLACE INTO users (id, money, badges, daily) VALUES (?, ?, ?, ?);").run(userID, amount, row.badges, row.daily)
+		return;
+	}
+
+	static daily(userID) {
+		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
+		db.prepare("REPLACE INTO users (id, money, badges, daily) VALUES (?, ?, ?, ?);").run(userID, 500, row.badges, Date.now())
+		return;
 	}
 }
 
