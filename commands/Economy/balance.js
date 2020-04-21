@@ -1,6 +1,3 @@
-const Database = require('better-sqlite3');
-const db = new Database('././src/Bakery.db');
-
 exports.run = async (bakery, msg) => {
 	if(!bakery.economy.hasBakery(msg.author.id)) {
 		msg.channel.send({embed: {
