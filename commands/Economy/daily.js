@@ -6,11 +6,11 @@ exports.run = (bakery, msg) => {
 		}})
 	} else {
 		const cooldown = 86400 // 24h in seconds
-		const time = (Date.now() - bakery.economy.get(msg.author.id, "daily")) / 1000
+		const time = (Date.now() - bakery.economy.get(msg.author.id, "daily"))
 		
-		if(time < cooldown) return msg.channel.send({embed: {
+		if(time / 1000 < cooldown) return msg.channel.send({embed: {
 			color: 0xFA3764,
-			description: "You already collected your daily for the day! Wait a while longer."
+			description: `You already collected your daily for the day! You have to wait \`${bakery.utils.parseTime(time)}\``
 		}})
 
 		bakery.economy.daily(msg.author.id)
