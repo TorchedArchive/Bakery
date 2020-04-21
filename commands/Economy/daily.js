@@ -6,7 +6,7 @@ exports.run = (bakery, msg) => {
 		}})
 	} else {
 		const cooldown = 86400 // 24h in seconds
-		const time = (Date.now() - bakery.economy.get(msg.author.id, "daily"))
+		const time = (Date.now() - bakery.economy.get(msg.author.id, "daily")) / 1000
 		
 		if(time < cooldown) return msg.channel.send({embed: {
 			color: 0xFA3764,
