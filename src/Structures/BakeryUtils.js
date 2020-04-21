@@ -7,6 +7,10 @@ class BakeryUtils {
 		let mins = s % 60;
 		let hours = (s - mins) / 60;
 
+		if (hours.toString().length === 1) hours = `0${hours}`;
+		if (mins.toString().length === 1) mins = `0${mins}`;
+		if (secs.toString().length === 1) secs = `0${secs}`;
+
 		return `${hours}:${mins}:${secs}`
 	}
 }
