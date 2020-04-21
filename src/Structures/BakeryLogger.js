@@ -1,21 +1,23 @@
 
 class BakeryLogger {
-	constructor() {}
-	
-	commands(msg) {
+	static commands(msg) {
 		console.log(`[Commands] ${msg}`)
 	}
 
-	events(msg) {
+	static events(msg) {
 		console.log(`[Events] ${msg}`)
 	}
 
-	shard(id, msg) {
+	static shard(id, msg) {
 		console.log(`[Shard #${id}] ${msg}`)
 	}
 
-	error(msg) {
+	static error(msg) {
 		console.error(`[Error] ${msg}`)
+	}
+
+	static db(msg) {
+		console.log(`[DB] ${msg}`)
 	}
 }
 

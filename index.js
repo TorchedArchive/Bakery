@@ -16,7 +16,7 @@ if (!table["count(*)"]) {
     db.prepare("CREATE UNIQUE INDEX idx_user_id ON users (id);").run()
     db.pragma("synchronous = 1")
     db.pragma("journal_mode = wal")
-    console.log("Created economy table for SQLite database.")
+    bakery.log.db("Created economy table for SQLite database.")
 }
 
 fs.readdirSync(__dirname + "/commands/").forEach((folder) => {
