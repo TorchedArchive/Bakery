@@ -22,9 +22,15 @@ class EconomyFunctions {
 		}
 	}
 
-	static get(userID) {
+	static get(userID, request) {
 		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
-		return row.money;
+		
+		// TODO: Change this to a switch block
+		if(request === "daily") { // request is basically the data we are requesting for (daily time, balance whatever)
+			return row.daily;
+		} else if (request === "money") { 
+			return row.money;
+		}
 	}
 
 	static give(userID, amount) {
@@ -35,7 +41,7 @@ class EconomyFunctions {
 
 	static daily(userID) {
 		const row = db.prepare("SELECT * FROM users WHERE id=?;").get(userID)
-		db.prepare("REPLACE INTO users (id, money, badges, daily) VALUES (?, ?, ?, ?);").run(userID, 500, row.badges, Date.now())
+		db.prepare("REPLACE INTO users (id, money, badges, daily) VALUES (?, ?, ?, ?);").run(userID, row.money + 500, row.badges, Date.now())
 		return;
 	}
 }
